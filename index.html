@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CC-3: Dialer Systems | Buzzworks VA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --sage: #8b9d83;
+            --peach: #f6b5a7;
+            --mint: #c9d8c5;
+            --cream: #f8f9f6;
+            --dark: #2d3e2d;
+            --text: #3d4d3d;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--cream);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--sage) 0%, var(--mint) 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            opacity: 0.95;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .header .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .meta-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .intro-section {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--peach);
+        }
+
+        .section {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .section h2 {
+            color: var(--sage);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid var(--mint);
+        }
+
+        .section h3 {
+            color: var(--dark);
+            font-size: 1.4rem;
+            margin: 2rem 0 1rem 0;
+        }
+
+        .dialer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .dialer-card {
+            background: linear-gradient(135deg, var(--cream) 0%, white 100%);
+            border: 3px solid var(--mint);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .dialer-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+            border-color: var(--sage);
+        }
+
+        .dialer-logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--sage);
+            margin-bottom: 1rem;
+        }
+
+        .dialer-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .dialer-tagline {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .step-by-step {
+            background: var(--cream);
+            border-left: 4px solid var(--sage);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: var(--sage);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .disposition-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .disposition-card {
+            background: white;
+            border: 2px solid var(--mint);
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .disposition-card:hover {
+            border-color: var(--sage);
+            transform: translateY(-3px);
+        }
+
+        .disposition-code {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--sage);
+            margin-bottom: 0.5rem;
+        }
+
+        .disposition-name {
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .tip-box {
+            background: linear-gradient(135deg, var(--mint) 0%, var(--cream) 100%);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--sage);
+        }
+
+        .tip-box strong {
+            color: var(--dark);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border: 3px solid #ffc107;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+        }
+
+        .warning-box strong {
+            color: #856404;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .danger-box {
+            background: #ffe8e8;
+            border: 3px solid #ff6b6b;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+        }
+
+        .danger-box strong {
+            color: #c92a2a;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .checklist {
+            background: white;
+            border: 2px solid var(--mint);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            background: var(--cream);
+            border-radius: 8px;
+        }
+
+        .checkbox {
+            width: 24px;
+            height: 24px;
+            border: 3px solid var(--sage);
+            border-radius: 6px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .comparison-table {
+            overflow-x: auto;
+            margin: 2rem 0;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .table th {
+            background: var(--sage);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--mint);
+        }
+
+        .table tr:hover {
+            background: var(--cream);
+        }
+
+        .feature-yes {
+            color: #51cf66;
+            font-weight: bold;
+        }
+
+        .feature-no {
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .dialer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .disposition-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">BUZZWORKS VA</div>
+        <h1>MODULE CC-2</h1>
+        <div class="subtitle">Dialer Systems Mastery</div>
+        <div class="meta-info">
+            <div class="meta-item">
+                <span>⏱️</span>
+                <span>Duration: 4 Hours</span>
+            </div>
+            <div class="meta-item">
+                <span>📚</span>
+                <span>Week 2 - Role-Specific Training</span>
+            </div>
+            <div class="meta-item">
+                <span>🎯</span>
+                <span>Phase 2A</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="intro-section">
+            <h2>Master the Tools That Multiply Your Results</h2>
+            <p>A power dialer is your secret weapon as a cold caller. While manual dialers make 10-20 calls per hour, you'll make 60-80+ calls per hour with a power dialer system. This module will teach you to master the top 5 dialing platforms used in real estate wholesaling, understand universal dialer concepts, stay compliant with TCPA regulations, and track metrics like a pro. By the end, you'll be able to jump into any dialer and be productive within minutes.</p>
+            
+            <div class="tip-box" style="margin-top: 1.5rem;">
+                <strong>🎯 Your Mission:</strong>
+                Learn to efficiently operate Mojo, PhoneBurner, Vulcan7, RedX, and Batch Dialer. Master disposition codes, DNC management, compliance, warm transfers, and metrics tracking. Become dialer-agnostic—skilled on any platform.
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>The 5 Major Dialing Platforms</h2>
+            
+            <p>Different wholesalers use different dialers, but they all serve the same purpose: maximize your calling efficiency while staying compliant. Here are the top 5:</p>
+
+            <div class="dialer-grid">
+                <div class="dialer-card">
+                    <div class="dialer-logo">📞</div>
+                    <div class="dialer-name">Mojo Dialer</div>
+                    <div class="dialer-tagline">The industry standard for high-volume cold calling</div>
+                    <p style="margin-top: 1rem;"><strong>Best For:</strong> Wholesalers who need triple-line dialing and built-in lead lists</p>
+                    <p style="margin-top: 0.5rem;"><strong>Key Feature:</strong> Calls 3 numbers simultaneously, connects you to whoever answers first</p>
+                </div>
+
+                <div class="dialer-card">
+                    <div class="dialer-logo">🔥</div>
+                    <div class="dialer-name">PhoneBurner</div>
+                    <div class="dialer-tagline">Power dialer with robust CRM integration</div>
+                    <p style="margin-top: 1rem;"><strong>Best For:</strong> Teams who need seamless CRM sync and email follow-up automation</p>
+                    <p style="margin-top: 0.5rem;"><strong>Key Feature:</strong> One-click email drops after calls + powerful reporting</p>
+                </div>
+
+                <div class="dialer-card">
+                    <div class="dialer-logo">⚡</div>
+                    <div class="dialer-name">Vulcan7</div>
+                    <div class="dialer-tagline">All-in-one real estate investor CRM + dialer</div>
+                    <p style="margin-top: 1rem;"><strong>Best For:</strong> Wholesalers who want CRM, dialer, and deal management in one platform</p>
+                    <p style="margin-top: 0.5rem;"><strong>Key Feature:</strong> Integrated deal pipeline and skip tracing built-in</p>
+                </div>
+
+                <div class="dialer-card">
+                    <div class="dialer-logo">🎯</div>
+                    <div class="dialer-name">RedX</div>
+                    <div class="dialer-tagline">Expired listing and FSBO specialist</div>
+                    <p style="margin-top: 1rem;"><strong>Best For:</strong> Real estate agents calling expired listings and FSBOs</p>
+                    <p style="margin-top: 0.5rem;"><strong>Key Feature:</strong> Real-time expired listing data and auto-dialer</p>
+                </div>
+
+                <div class="dialer-card">
+                    <div class="dialer-logo">📱</div>
+                    <div class="dialer-name">Batch Dialer</div>
+                    <div class="dialer-tagline">Simple, affordable power dialer</div>
+                    <p style="margin-top: 1rem;"><strong>Best For:</strong> Solo investors or small teams on a budget</p>
+                    <p style="margin-top: 0.5rem;"><strong>Key Feature:</strong> No-frills, easy-to-use interface with solid performance</p>
+                </div>
+            </div>
+
+            <h3>Feature Comparison</h3>
+            <div class="comparison-table">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Mojo</th>
+                            <th>PhoneBurner</th>
+                            <th>Vulcan7</th>
+                            <th>RedX</th>
+                            <th>Batch</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Triple-Line Dialing</td>
+                            <td class="feature-yes">✓ Yes</td>
+                            <td class="feature-no">✗ No</td>
+                            <td class="feature-no">✗ No</td>
+                            <td class="feature-no">✗ No</td>
+                            <td class="feature-no">✗ No</td>
+                        </tr>
+                        <tr>
+                            <td>Built-in CRM</td>
+                            <td class="feature-yes">✓ Basic</td>
+                            <td class="feature-yes">✓ Yes</td>
+                            <td class="feature-yes">✓ Advanced</td>
+                            <td class="feature-yes">✓ Basic</td>
+                            <td class="feature-no">✗ No</td>
+                        </tr>
+                        <tr>
+                            <td>Email Automation</td>
+                            <td class="feature-no">✗ No</td>
+                            <td class="feature-yes">✓ Yes</td>
+                            <td class="feature-yes">✓ Yes</td>
+                            <td class="feature-no">✗ No</td>
+                            <td class="feature-no">✗ No</td>
+                        </tr>
+                        <tr>
+                            <td>Call Recording</td>
+                            <td class="feature-yes">✓ Yes</td>
+                            <td class="feature-yes">✓ Yes</td>
+                            <td class="feature-yes">✓ Yes</td>
+                            <td class="feature-yes">✓ Yes</td>
+                            <td class="feature-yes">✓ Yes</td>
+                        </tr>
+                        <tr>
+                            <td>DNC Scrubbing</td>
+                            <td class="feature-yes">✓ Yes</td>
+                            <td class="feature-yes">✓ Yes</td>
+                            <td class="feature-yes">✓ Yes</td>
+                            <td class="feature-yes">✓ Yes</td>
+                            <td class="feature-yes">✓ Yes</td>
+                        </tr>
+                        <tr>
+                            <td>Price (monthly)</td>
+                            <td>$99-299</td>
+                            <td>$149-499</td>
+                            <td>$297-497</td>
+                            <td>$99-199</td>
+                            <td>$49-149</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Mojo Dialer: Complete Setup Guide</h2>
+            
+            <p>Mojo is the most popular dialer for wholesaling cold callers. Here's everything you need to know:</p>
+
+            <h3>Login and Initial Setup</h3>
+            <div class="step-by-step">
+                <p><span class="step-number">1</span> <strong>Access Your Account</strong></p>
+                <p style="margin-left: 2.5rem; margin-top: 0.5rem;">Your supervisor will provide login credentials. Go to mojosells.com and click "Sign In"</p>
+            </div>
+
+            <div class="step-by-step">
+                <p><span class="step-number">2</span> <strong>Download the Desktop App</strong></p>
+                <p style="margin-left: 2.5rem; margin-top: 0.5rem;">Mojo works best as a desktop application. Download for Windows or Mac. The web version exists but is limited.</p>
+            </div>
+
+            <div class="step-by-step">
+                <p><span class="step-number">3</span> <strong>Configure Your Microphone</strong></p>
+                <p style="margin-left: 2.5rem; margin-top: 0.5rem;">Go to Settings → Audio. Test your microphone and headset. Adjust volume levels. Crystal-clear audio is critical.</p>
+            </div>
+
+            <div class="step-by-step">
+                <p><span class="step-number">4</span> <strong>Set Your Caller ID</strong></p>
+                <p style="margin-left: 2.5rem; margin-top: 0.5rem;">Your supervisor will assign you a local caller ID number. This increases answer rates because it shows as a local call.</p>
+            </div>
+
+            <h3>Importing and Managing Lists</h3>
+            <div class="step-by-step">
+                <p><span class="step-number">1</span> <strong>Import Your List</strong></p>
+                <p style="margin-left: 2.5rem; margin-top: 0.5rem;">Click "Lists" → "Import List" → Upload CSV file with columns: First Name, Last Name, Phone, Address, Property Info</p>
+            </div>
+
+            <div class="step-by-step">
+                <p><span class="step-number">2</span> <strong>DNC Scrubbing (CRITICAL)</strong></p>
+                <p style="margin-left: 2.5rem; margin-top: 0.5rem;">Before calling ANY list, run DNC scrubbing. Mojo automatically removes numbers on the National Do Not Call Registry. Skipping this step = legal violations.</p>
+            </div>
+
+            <div class="step-by-step">
+                <p><span class="step-number">3</span> <strong>Select Your Calling List</strong></p>
+                <p style="margin-left: 2.5rem; margin-top: 0.5rem;">Click "Select List" → Choose your list → Click "Start Dialing"</p>
+            </div>
+
+            <h3>Triple-Line Dialing Explained</h3>
+            <div class="tip-box">
+                <strong>🔥 Mojo's Secret Weapon: Triple-Line Dialing</strong>
+                <p style="margin-top: 0.5rem;">Mojo calls 3 phone numbers simultaneously. Whoever answers first gets connected to you. The other 2 calls disconnect automatically. This triples your contact rate compared to single-line dialers.</p>
+                <p style="margin-top: 0.5rem;"><strong>Example:</strong> Instead of calling 20 numbers in an hour and reaching 6 people, you call 60 numbers and reach 18 people in the same hour.</p>
+            </div>
+
+            <h3>Using Disposition Codes in Mojo</h3>
+            <p>After EVERY call, you must mark a disposition code. This tracks your results and tells Mojo how to handle this lead next time.</p>
+
+            <div class="disposition-grid">
+                <div class="disposition-card">
+                    <div class="disposition-code">C</div>
+                    <div class="disposition-name">Contact</div>
+                    <p>You reached a live person but they're not interested and don't want a callback.</p>
+                </div>
+
+                <div class="disposition-card">
+                    <div class="disposition-code">L</div>
+                    <div class="disposition-name">Lead</div>
+                    <p>They expressed interest! Motivated seller, wants more info, or considering selling.</p>
+                </div>
+
+                <div class="disposition-card">
+                    <div class="disposition-code">A</div>
+                    <div class="disposition-name">Appointment</div>
+                    <p>You set an appointment for your wholesaler to visit the property!</p>
+                </div>
+
+                <div class="disposition-card">
+                    <div class="disposition-code">CB</div>
+                    <div class="disposition-name">Callback</div>
+                    <p>They want you to call back at a specific time. Schedule the callback.</p>
+                </div>
+
+                <div class="disposition-card">
+                    <div class="disposition-code">NI</div>
+                    <div class="disposition-name">Not Interested</div>
+                    <p>They're not selling and don't want to be contacted again.</p>
+                </div>
+
+                <div class="disposition-card">
+                    <div class="disposition-code">WN</div>
+                    <div class="disposition-name">Wrong Number</div>
+                    <p>Number is disconnected, wrong person, or bad data.</p>
+                </div>
+
+                <div class="disposition-card">
+                    <div class="disposition-code">DNC</div>
+                    <div class="disposition-name">Do Not Call</div>
+                    <p>They specifically requested to be removed from your list. Mark DNC immediately.</p>
+                </div>
+            </div>
+
+            <h3>Call Recording</h3>
+            <div class="step-by-step">
+                <p><span class="step-number">1</span> <strong>Enable Recording</strong></p>
+                <p style="margin-left: 2.5rem; margin-top: 0.5rem;">Settings → Call Recording → Enable "Record All Calls"</p>
+            </div>
+
+            <div class="step-by-step">
+                <p><span class="step-number">2</span> <strong>Review Your Calls</strong></p>
+                <p style="margin-left: 2.5rem; margin-top: 0.5rem;">Go to "Call History" → Listen to recordings. Identify what worked and what didn't. Top performers review 5-10 calls weekly.</p>
+            </div>
+
+            <div class="warning-box">
+                <strong>⚠️ Two-Party Consent States</strong>
+                <p style="margin-top: 0.5rem;">Some states require you to notify the other party that the call is being recorded. Check with your supervisor for compliance requirements in your calling regions.</p>
+            </div>
+
+            <h3>Reports and Metrics in Mojo</h3>
+            <div class="step-by-step">
+                <p><span class="step-number">1</span> <strong>Daily Activity Report</strong></p>
+                <p style="margin-left: 2.5rem; margin-top: 0.5rem;">Click "Reports" → "Daily Activity" to see: Dials, Contacts, Conversations, Leads, Appointments</p>
+            </div>
+
+            <div class="step-by-step">
+                <p><span class="step-number">2</span> <strong>Export Your Numbers</strong></p>
+                <p style="margin-left: 2.5rem; margin-top: 0.5rem;">At end of day, export your stats to paste into your daily report for your wholesaler.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>PhoneBurner: Key Differences</h2>
+            
+            <p>PhoneBurner is similar to Mojo but with some key differences:</p>
+
+            <h3>Setup Process</h3>
+            <div class="step-by-step">
+                <p><span class="step-number">1</span> <strong>Web-Based Platform</strong></p>
+                <p style="margin-left: 2.5rem; margin-top: 0.5rem;">No download needed. Works in Chrome browser. Log in at phoneburner.com</p>
+            </div>
+
+            <div class="step-by-step">
+                <p><span class="step-number">2</span> <strong>Import Contacts</strong></p>
+                <p style="margin-left: 2.5rem; margin-top: 0.5rem;">Contacts → Import → Upload CSV (same format as Mojo)</p>
+            </div>
+
+            <div class="step-by-step">
+                <p><span class="step-number">3</span> <strong>Configure Power Dialer</strong></p>
+                <p style="margin-left: 2.5rem; margin-top: 0.5rem;">Settings → Dialing → Choose "Power Dial" mode (calls next number as soon as you finish current call)</p>
+            </div>
+
+            <h3>Unique Features</h3>
+            <div class="tip-box">
+                <strong>📧 Email Drops</strong>
+                <p style="margin-top: 0.5rem;">PhoneBurner's killer feature: After a call, click "Email" to instantly send a pre-written template to the prospect. Great for follow-up after leaving voicemails.</p>
+            </div>
+
+            <div class="tip-box">
+                <strong>🔗 CRM Integration</strong>
+                <p style="margin-top: 0.5rem;">PhoneBurner syncs with most CRMs (Podio, Salesforce, HubSpot). Disposition codes and notes automatically update your CRM.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Universal Dialer Skills (Works on ALL Platforms)</h2>
+            
+            <p>Master these concepts and you can use any dialer with confidence:</p>
+
+            <h3>Auto-Dialers vs. Manual Dialers</h3>
+            <div class="comparison-table">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Manual Dialer</th>
+                            <th>Power/Auto Dialer</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>How It Works</td>
+                            <td>You click each number to dial</td>
+                            <td>System automatically dials next number</td>
+                        </tr>
+                        <tr>
+                            <td>Dials Per Hour</td>
+                            <td>15-25</td>
+                            <td>60-80+</td>
+                        </tr>
+                        <tr>
+                            <td>Best For</td>
+                            <td>Warm leads, callbacks, appointments</td>
+                            <td>Cold calling, list blasting</td>
+                        </tr>
+                        <tr>
+                            <td>Control Level</td>
+                            <td>High - you choose each call</td>
+                            <td>Medium - system drives pace</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="tip-box">
+                <strong>💡 Pro Tip:</strong>
+                Use power dialer for cold lists. Switch to manual for callbacks and hot leads where you need time to review notes before calling.
+            </div>
+
+            <h3>TCPA Compliance: Non-Negotiable Rules</h3>
+            <div class="danger-box">
+                <strong>🚨 CRITICAL: TCPA Violations = Lawsuits</strong>
+                <p style="margin-top: 0.5rem;">The Telephone Consumer Protection Act (TCPA) regulates cold calling. Violations can result in $500-$1,500 fines PER CALL. Your wholesaler can be sued. You can be held personally liable. Take compliance seriously.</p>
+            </div>
+
+            <h3>TCPA Compliance Checklist</h3>
+            <div class="checklist">
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <div>
+                        <strong>ALWAYS scrub against National DNC Registry before calling</strong>
+                        <p style="margin-top: 0.25rem; font-size: 0.9rem;">Every dialer has this feature. Use it. No exceptions.</p>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <div>
+                        <strong>Maintain your own company DNC list</strong>
+                        <p style="margin-top: 0.25rem; font-size: 0.9rem;">If someone says "take me off your list," mark them DNC immediately and never call them again.</p>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <div>
+                        <strong>Only call between 8 AM - 9 PM in prospect's local time zone</strong>
+                        <p style="margin-top: 0.25rem; font-size: 0.9rem;">Calling outside these hours is a TCPA violation. Set your dialer to respect time zones.</p>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <div>
+                        <strong>Don't call cell phones with auto-dialers without prior consent</strong>
+                        <p style="margin-top: 0.25rem; font-size: 0.9rem;">Technically, auto-dialing cell phones requires permission. Most wholesalers accept this risk, but know the law.</p>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <div>
+                        <strong>Identify yourself and your company at the start of every call</strong>
+                        <p style="margin-top: 0.25rem; font-size: 0.9rem;">"Hi, this is [Your Name] with [Company Name]..." Required by law.</p>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <div>
+                        <strong>Honor DNC requests immediately</strong>
+                        <p style="margin-top: 0.25rem; font-size: 0.9rem;">When someone says "don't call me again," mark it in the system before you hang up.</p>
+                    </div>
+                </div>
+
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <div>
+                        <strong>Don't use pre-recorded messages without consent</strong>
+                        <p style="margin-top: 0.25rem; font-size: 0.9rem;">Robocalls to cell phones = major TCPA violation. You must speak live.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>DNC List Management</h3>
+            <div class="step-by-step">
+                <p><span class="step-number">1</span> <strong>Before Calling: National DNC Scrub</strong></p>
+                <p style="margin-left: 2.5rem; margin-top: 0.5rem;">All dialers integrate with the National DNC Registry. Scrub your list before every campaign. This removes people who registered on donotcall.gov</p>
+            </div>
+
+            <div class="step-by-step">
+                <p><span class="step-number">2</span> <strong>During Calls: Company DNC List</strong></p>
+                <p style="margin-left: 2.5rem; margin-top: 0.5rem;">When someone says "take me off your list" or "don't call me again," mark them DNC in your dialer immediately.</p>
+            </div>
+
+            <div class="step-by-step">
+                <p><span class="step-number">3</span> <strong>Weekly: Export and Backup Your DNC List</strong></p>
+                <p style="margin-left: 2.5rem; margin-top: 0.5rem;">Export your company DNC list weekly. Share with your team. Ensure no one accidentally calls these numbers.</p>
+            </div>
+
+            <div class="warning-box">
+                <strong>⚠️ DNC Liability Example</strong>
+                <p style="margin-top: 0.5rem;">A real estate investor called someone on the National DNC Registry 17 times over 6 months. The homeowner sued and won $25,500 in damages ($1,500 per call). The investor also paid legal fees. Don't let this be you.</p>
+            </div>
+
+            <h3>Disposition Code Mastery</h3>
+            <p>Every dialer uses disposition codes. Learn what each means and when to use them:</p>
+
+            <div class="disposition-grid">
+                <div class="disposition-card">
+                    <div class="disposition-code">CONTACT (C)</div>
+                    <div class="disposition-name">When to Use:</div>
+                    <p>You spoke with someone, confirmed it's the property owner, but they're not interested in selling right now and don't want a callback.</p>
+                    <p style="margin-top: 0.5rem; font-weight: 600;">Next Action: Remove from active list</p>
+                </div>
+
+                <div class="disposition-card">
+                    <div class="disposition-code">LEAD (L)</div>
+                    <div class="disposition-name">When to Use:</div>
+                    <p>Property owner showed interest in selling, asked questions, or is considering it. This is a MOTIVATED SELLER!</p>
+                    <p style="margin-top: 0.5rem; font-weight: 600;">Next Action: Add to hot leads list, follow up within 24-48 hours</p>
+                </div>
+
+                <div class="disposition-card">
+                    <div class="disposition-code">APPOINTMENT (A)</div>
+                    <div class="disposition-name">When to Use:</div>
+                    <p>You successfully scheduled your wholesaler to visit the property for an in-person assessment!</p>
+                    <p style="margin-top: 0.5rem; font-weight: 600;">Next Action: Confirm appointment 24 hours before, send details to wholesaler</p>
+                </div>
+
+                <div class="disposition-card">
+                    <div class="disposition-code">CALLBACK (CB)</div>
+                    <div class="disposition-name">When to Use:</div>
+                    <p>Property owner wants you to call back at a specific time. They're busy now or need to think about it.</p>
+                    <p style="margin-top: 0.5rem; font-weight: 600;">Next Action: Schedule exact callback date/time in system</p>
+                </div>
+
+                <div class="disposition-card">
+                    <div class="disposition-code">NOT INTERESTED (NI)</div>
+                    <div class="disposition-name">When to Use:</div>
+                    <p>Property owner clearly stated they're not selling and not interested. Polite but firm "no."</p>
+                    <p style="margin-top: 0.5rem; font-weight: 600;">Next Action: Remove from active list, possibly try again in 6-12 months</p>
+                </div>
+
+                <div class="disposition-card">
+                    <div class="disposition-code">WRONG NUMBER (WN)</div>
+                    <div class="disposition-name">When to Use:</div>
+                    <p>Number is disconnected, belongs to wrong person, or bad data in your list.</p>
+                    <p style="margin-top: 0.5rem; font-weight: 600;">Next Action: Mark as bad data, skip trace for updated contact info</p>
+                </div>
+
+                <div class="disposition-card">
+                    <div class="disposition-code">DO NOT CALL (DNC)</div>
+                    <div class="disposition-name">When to Use:</div>
+                    <p>Property owner explicitly said "take me off your list," "don't call me again," or "I'm on the DNC list."</p>
+                    <p style="margin-top: 0.5rem; font-weight: 600;">Next Action: IMMEDIATELY mark DNC, never call again</p>
+                </div>
+
+                <div class="disposition-card">
+                    <div class="disposition-code">NO ANSWER (NA)</div>
+                    <div class="disposition-name">When to Use:</div>
+                    <p>Call went to voicemail or no one answered. Not technically a "disposition" but tracked for follow-up.</p>
+                    <p style="margin-top: 0.5rem; font-weight: 600;">Next Action: Try again at different time, leave voicemail on 2nd attempt</p>
+                </div>
+            </div>
+
+            <h3>Warm Transfer Process</h3>
+            <p>When you reach a highly motivated seller who wants to talk RIGHT NOW, you can transfer them directly to your wholesaler:</p>
+
+            <div class="step-by-step">
+                <p><span class="step-number">1</span> <strong>Recognize the Hot Lead</strong></p>
+                <p style="margin-left: 2.5rem; margin-top: 0.5rem;">Signals: "I need to sell this week," "I'll take any offer," "Can someone come look at it today?"</p>
+            </div>
+
+            <div class="step-by-step">
+                <p><span class="step-number">2</span> <strong>Ask Permission</strong></p>
+                <p style="margin-left: 2.5rem; margin-top: 0.5rem;">"I have my property specialist available right now. Would you like to speak with them directly to discuss your situation?"</p>
+            </div>
+
+            <div class="step-by-step">
+                <p><span class="step-number">3</span> <strong>Warm Them Up</strong></p>
+                <p style="margin-left: 2.5rem; margin-top: 0.5rem;">"Great! Let me tell them about your situation. Give me one moment."</p>
+            </div>
+
+            <div class="step-by-step">
+                <p><span class="step-number">4</span> <strong>Place on Hold (in dialer)</strong></p>
+                <p style="margin-left: 2.5rem; margin-top: 0.5rem;">Most dialers have a "Hold" button. Click it. The prospect hears hold music.</p>
+            </div>
+
+            <div class="step-by-step">
+                <p><span class="step-number">5</span> <strong>Brief Your Wholesaler</strong></p>
+                <p style="margin-left: 2.5rem; margin-top: 0.5rem;">Call or text: "Hot lead on line 1. John Smith, 123 Oak St. Inherited property, needs to sell ASAP, very motivated."</p>
+            </div>
+
+            <div class="step-by-step">
+                <p><span class="step-number">6</span> <strong>Transfer the Call</strong></p>
+                <p style="margin-left: 2.5rem; margin-top: 0.5rem;">In Mojo: Click "Transfer" → Enter wholesaler's extension → "Warm Transfer"<br>In PhoneBurner: Click "Transfer" → Select contact → "Transfer Now"</p>
+            </div>
+
+            <div class="tip-box">
+                <strong>🔥 Warm vs. Cold Transfer</strong>
+                <p style="margin-top: 0.5rem;"><strong>Warm Transfer:</strong> You brief the wholesaler first, then connect. (PREFERRED)</p>
+                <p style="margin-top: 0.5rem;"><strong>Cold Transfer:</strong> You transfer directly without briefing. (Use only if wholesaler is immediately available and prefers this)</p>
+            </div>
+
+            <h3>Call Recording and Review</h3>
+            <p>Recording your calls is one of the fastest ways to improve. Here's how to use this feature effectively:</p>
+
+            <div class="step-by-step">
+                <p><span class="step-number">1</span> <strong>Enable Recording in Your Dialer</strong></p>
+                <p style="margin-left: 2.5rem; margin-top: 0.5rem;">All major dialers have this. Turn it on. Some states require disclosure ("This call may be recorded...").</p>
+            </div>
+
+            <div class="step-by-step">
+                <p><span class="step-number">2</span> <strong>Weekly Review Session</strong></p>
+                <p style="margin-left: 2.5rem; margin-top: 0.5rem;">Every Friday, listen to 5-10 of your calls. Pick 2 where you got a lead, 2 where you got hung up on, and 1 random call.</p>
+            </div>
+
+            <div class="step-by-step">
+                <p><span class="step-number">3</span> <strong>Self-Critique</strong></p>
+                <p style="margin-left: 2.5rem; margin-top: 0.5rem;">Ask yourself:
+                    <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                        <li>Did I talk too fast or too slow?</li>
+                        <li>Did I listen or just pitch?</li>
+                        <li>Did I miss buying signals?</li>
+                        <li>How was my tone? Confident? Nervous?</li>
+                        <li>Did I ask enough qualifying questions?</li>
+                    </ul>
+                </p>
+            </div>
+
+            <div class="step-by-step">
+                <p><span class="step-number">4</span> <strong>Share with Your Supervisor</strong></p>
+                <p style="margin-left: 2.5rem; margin-top: 0.5rem;">Send your best call and worst call each week. Ask for feedback. Top performers do this religiously.</p>
+            </div>
+
+            <h3>Metrics Tracking</h3>
+            <p>Every dialer provides these key metrics. Track them daily:</p>
+
+            <div class="comparison-table">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>What It Measures</th>
+                            <th>Good Target</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Dials</strong></td>
+                            <td>Total calls attempted (includes no-answers, voicemails)</td>
+                            <td>400-600 per day</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Contacts</strong></td>
+                            <td>Live people you actually spoke with</td>
+                            <td>20-40 per day</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Talk Time</strong></td>
+                            <td>Total minutes spent in conversations</td>
+                            <td>60-120 min/day</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Leads</strong></td>
+                            <td>Motivated sellers identified</td>
+                            <td>1-3 per day</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Appointments</strong></td>
+                            <td>Property visits scheduled</td>
+                            <td>0.5-1.5 per day</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Contact Rate</strong></td>
+                            <td>Contacts ÷ Dials (percentage)</td>
+                            <td>30-40%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Lead Rate</strong></td>
+                            <td>Leads ÷ Contacts (percentage)</td>
+                            <td>3-8%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Quick Start Guides for Other Dialers</h2>
+
+            <h3>Vulcan7 Setup</h3>
+            <div class="step-by-step">
+                <p><span class="step-number">1</span> Log in at vulcan7.com</p>
+            </div>
+            <div class="step-by-step">
+                <p><span class="step-number">2</span> Navigate to "Campaigns" → "Create New Campaign"</p>
+            </div>
+            <div class="step-by-step">
+                <p><span class="step-number">3</span> Import your list (CSV with property data)</p>
+            </div>
+            <div class="step-by-step">
+                <p><span class="step-number">4</span> Click "Start Dialing" → System auto-dials through your list</p>
+            </div>
+            <div class="tip-box">
+                <strong>Vulcan7 Advantage:</strong> Built-in skip tracing and deal pipeline. You can track leads from first call to closed deal in one system.
+            </div>
+
+            <h3>RedX Setup</h3>
+            <div class="step-by-step">
+                <p><span class="step-number">1</span> Log in at redx.com</p>
+            </div>
+            <div class="step-by-step">
+                <p><span class="step-number">2</span> Select "Expired Listings" or "FSBO" data source</p>
+            </div>
+            <div class="step-by-step">
+                <p><span class="step-number">3</span> Choose your geographic area</p>
+            </div>
+            <div class="step-by-step">
+                <p><span class="step-number">4</span> Click "Load to Dialer" → Start calling fresh leads</p>
+            </div>
+            <div class="tip-box">
+                <strong>RedX Advantage:</strong> Real-time expired listing data updated daily. Great for agents targeting recently expired listings.
+            </div>
+
+            <h3>Batch Dialer Setup</h3>
+            <div class="step-by-step">
+                <p><span class="step-number">1</span> Log in at batchdialer.com</p>
+            </div>
+            <div class="step-by-step">
+                <p><span class="step-number">2</span> Click "Upload List" → Import CSV</p>
+            </div>
+            <div class="step-by-step">
+                <p><span class="step-number">3</span> Select list → Click "Start Session"</p>
+            </div>
+            <div class="step-by-step">
+                <p><span class="step-number">4</span> System dials automatically, connects you when someone answers</p>
+            </div>
+            <div class="tip-box">
+                <strong>Batch Dialer Advantage:</strong> Simple, no-frills, affordable. Perfect for beginners or small operations.
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Daily Dialer Workflow Checklist</h2>
+            
+            <p>Follow this checklist every single day before, during, and after your calling session:</p>
+
+            <h3>Before You Start Calling</h3>
+            <div class="checklist">
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <div>Test your microphone and headset</div>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <div>Verify your list is DNC scrubbed</div>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <div>Check that caller ID is showing correct local number</div>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <div>Have your script and objection responses ready</div>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <div>Confirm you're calling within 8 AM - 9 PM time zone</div>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <div>Open CRM for real-time note-taking</div>
+                </div>
+            </div>
+
+            <h3>During Your Calling Session</h3>
+            <div class="checklist">
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <div>Mark disposition code after EVERY call</div>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <div>Take detailed notes in CRM during conversations</div>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <div>Immediately mark DNC when requested</div>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <div>Schedule callbacks with specific date/time</div>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <div>Transfer hot leads to wholesaler when appropriate</div>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <div>Stay hydrated and take micro-breaks every 45 minutes</div>
+                </div>
+            </div>
+
+            <h3>End of Day</h3>
+            <div class="checklist">
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <div>Export your daily metrics report</div>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <div>Review and finalize all lead notes</div>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <div>Send hot leads list to wholesaler</div>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <div>Schedule tomorrow's callbacks in system</div>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox"></div>
+                    <div>Listen to 1-2 recorded calls for self-improvement</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Common Dialer Problems & Solutions</h2>
+
+            <div class="tip-box">
+                <strong>Problem: Low Contact Rate (below 25%)</strong>
+                <p style="margin-top: 0.5rem;"><strong>Solutions:</strong></p>
+                <ul style="margin-left: 1.5rem;">
+                    <li>Call at different times (try mornings vs afternoons)</li>
+                    <li>Your list quality is poor - get better data</li>
+                    <li>Too many disconnected numbers - need fresh list</li>
+                </ul>
+            </div>
+
+            <div class="tip-box">
+                <strong>Problem: Audio Quality Issues</strong>
+                <p style="margin-top: 0.5rem;"><strong>Solutions:</strong></p>
+                <ul style="margin-left: 1.5rem;">
+                    <li>Use wired headset instead of Bluetooth</li>
+                    <li>Close other applications using bandwidth</li>
+                    <li>Test your internet speed (need 5+ Mbps)</li>
+                    <li>Switch to different USB port for headset</li>
+                </ul>
+            </div>
+
+            <div class="tip-box">
+                <strong>Problem: Dialer Keeps Dropping Calls</strong>
+                <p style="margin-top: 0.5rem;"><strong>Solutions:</strong></p>
+                <ul style="margin-left: 1.5rem;">
+                    <li>Check internet connection stability</li>
+                    <li>Restart the dialer application</li>
+                    <li>Contact support - may be server issue</li>
+                    <li>Clear cache and cookies if using web-based dialer</li>
+                </ul>
+            </div>
+
+            <div class="tip-box">
+                <strong>Problem: Can't Import List</strong>
+                <p style="margin-top: 0.5rem;"><strong>Solutions:</strong></p>
+                <ul style="margin-left: 1.5rem;">
+                    <li>Verify CSV format matches dialer requirements</li>
+                    <li>Check column headers match exactly</li>
+                    <li>Remove special characters from data</li>
+                    <li>Ensure file size is under dialer limit</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section" style="background: linear-gradient(135deg, var(--sage) 0%, var(--mint) 100%); color: white;">
+            <h2 style="color: white; border-bottom-color: rgba(255,255,255,0.3);">You're Now Dialer-Certified</h2>
+            
+            <p style="font-size: 1.1rem; line-height: 1.8;">You now understand how to operate the 5 major dialing platforms, stay compliant with TCPA regulations, properly use disposition codes, manage DNC lists, execute warm transfers, and track your metrics. Whether your wholesaler uses Mojo, PhoneBurner, Vulcan7, RedX, or Batch, you can jump in and be productive immediately.</p>
+            
+            <p style="font-size: 1.1rem; line-height: 1.8; margin-top: 1rem;">Remember: The dialer is just a tool. Your skill, persistence, and ability to connect with motivated sellers is what creates results. Master the technology so it gets out of your way and lets you focus on conversations.</p>
+            
+            <div style="text-align: center; margin-top: 2rem; padding: 2rem; background: rgba(255,255,255,0.1); border-radius: 12px;">
+                <strong style="font-size: 1.4rem; display: block; margin-bottom: 1rem;">Dialer Mastery Commitment</strong>
+                <p style="font-size: 1.1rem;">"I commit to learning my dialer inside and out, staying compliant with all regulations, accurately marking every disposition, and using technology to maximize my productivity while staying human in my conversations."</p>
+            </div>
+        </div>
+
+        <div class="intro-section" style="background: linear-gradient(135deg, var(--cream) 0%, white 100%);">
+            <strong style="font-size: 1.2rem; color: var(--sage);">📝 Module Complete!</strong>
+            <p style="margin-top: 1rem;">You've completed CC-3: Dialer Systems. You're now ready to use any major dialing platform with confidence, stay compliant, and track your performance effectively.</p>
+            
+            <div class="tip-box" style="margin-top: 1.5rem;">
+                <strong>🎯 Next Steps:</strong>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li>Request access to your company's dialer platform</li>
+                    <li>Complete the practice session with demo account</li>
+                    <li>Review the compliance checklist daily</li>
+                    <li>Make 10 practice calls under supervision</li>
+                    <li>Proceed to CC-4: Advanced Cold Calling Techniques</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
